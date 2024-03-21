@@ -1,0 +1,24 @@
+
+static_library("example_samgr") {
+  sources = [
+	"//test/xts/acts/distributed_schedule_lite/samgr_hal/utils/samgr_maintenance.c",
+	"bootstrap_example.c",
+	"broadcast_example.c",
+	"feature_example.c",
+	"maintenance_example.c",
+	"service_example.c",
+	"service_recovery_example.c",
+	"specified_task_example.c",
+	"task_example.c",
+  ]
+
+  include_dirs = [
+	"//utils/native/lite/include",
+	"//kernel/liteos_m/components/cmsis",
+	"//foundation/distributedschedule/samgr_lite/interfaces/kits/samgr",
+	"//foundation/distributedschedule/samgr_lite/interfaces/kits/communication/broadcast",
+	"//foundation/distributedschedule/samgr_lite/samgr/adapter",
+	"//foundation/distributedschedule/samgr_lite/samgr/source",
+	"//test/xts/acts/distributed_schedule_lite/samgr_hal/utils",
+  ]
+}

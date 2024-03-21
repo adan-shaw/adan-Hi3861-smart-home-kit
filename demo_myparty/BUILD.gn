@@ -1,0 +1,15 @@
+static_library("myparty_demo") {
+	sources = [
+		"myparty_demo.c"
+	]
+# 注意需要把a_myparty的头文件路径加进来
+	include_dirs = [
+		"//utils/native/lite/include",
+		"//third_party/a_myparty",
+	]
+
+# 表示需要a_myparty 软件包
+	deps = [
+		"//third_party/a_myparty:a_myparty_static",
+	]
+}

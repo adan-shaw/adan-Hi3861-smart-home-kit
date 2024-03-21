@@ -1,0 +1,9 @@
+
+import("//build/lite/config/component/lite_component.gni")
+
+lite_component("app") {
+	features = [
+		"udpserver_env:net_demo",
+		"environment:sensing_demo"
+	]
+}

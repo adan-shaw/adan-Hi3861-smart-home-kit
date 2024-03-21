@@ -1,0 +1,12 @@
+static_library("adc_demo") {
+	sources = [
+		"adc_demo.c",
+	]
+
+	include_dirs = [
+		"//utils/native/lite/include",
+		"//kernel/liteos_m/components/cmsis/2.0",
+		"//base/iot_hardware/interfaces/kits/wifiiot_lite",
+		"//base/iot_hardware/peripheral/interfaces/kits",
+	]
+}

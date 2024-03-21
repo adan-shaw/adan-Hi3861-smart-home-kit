@@ -1,0 +1,7 @@
+import("//build/lite/config/component/lite_component.gni")
+
+lite_component("app") {
+	features = [
+		"car_test:car_test",
+	]
+}

@@ -1,0 +1,10 @@
+static_library("example_demolink") {
+	sources = [
+		"helloworld.c"
+	]
+
+	include_dirs = [
+		"//utils/native/lite/include",
+		"//domains/iot/link/libbuild"
+	]
+}

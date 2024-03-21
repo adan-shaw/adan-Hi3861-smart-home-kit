@@ -1,0 +1,21 @@
+static_library("car_test") {
+	sources = [
+		"car_test.c",
+		"sta_entry.c",
+		"udp_test.c",
+		"mqtt_test.c",
+	]
+
+	include_dirs = [
+		"//utils/native/lite/include",
+		"//kernel/liteos_m/components/cmsis/2.0",
+		"//base/iot_hardware/peripheral/interfaces/kits",
+		"//device/soc/hisilicon/hi3861v100/hi3861_adapter/hals/communication/wifi_lite/wifiservice",
+		"//device/soc/hisilicon/hi3861v100/hi3861_adapter/kal",
+		"//device/soc/hisilicon/hi3861v100/sdk_liteos/third_party/lwip_sack/include",
+		"//third_party/cJSON/",
+	]
+	deps = [
+		"//third_party/pahomqtt:pahomqtt_static",
+	]
+}

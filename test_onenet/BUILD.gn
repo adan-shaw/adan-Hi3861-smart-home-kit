@@ -1,0 +1,24 @@
+
+static_library("onenet_test") {
+	sources = [
+		"onenet_entry.c",
+		"onenet_test.c"
+	]
+
+	include_dirs = [
+		"//utils/native/lite/include",
+		"//kernel/liteos_m/components/cmsis/2.0",
+		"//base/iot_hardware/interfaces/kits/wifiiot_lite",
+		"//vendor/hisi/hi3861/hi3861/third_party/lwip_sack/include",
+		"//foundation/communication/interfaces/kits/wifi_lite/wifiservice",
+		"//third_party/pahomqtt/MQTTPacket/src",
+		"//third_party/pahomqtt/MQTTClient-C/src",
+		"//third_party/pahomqtt/MQTTClient-C/src/liteOS",
+		"//third_party/onenet",
+	]
+# 表示需要软件包
+	deps = [
+		"//third_party/pahomqtt:pahomqtt_static",
+		"//third_party/onenet:onenet_static",
+	]
+}

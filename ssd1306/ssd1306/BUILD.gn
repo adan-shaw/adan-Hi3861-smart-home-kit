@@ -1,0 +1,18 @@
+
+static_library("oled_ssd1306") {
+	sources = [
+		"ssd1306.c",
+		"ssd1306_fonts.c",
+	]
+
+	include_dirs = [
+		"//utils/native/lite/include",
+		"//kernel/liteos_m/components/cmsis/2.0",
+		"//base/iot_hardware/peripheral/interfaces/kits",
+		"//device/soc/hisilicon/hi3861v100/hi3861_adapter/hals/communication/wifi_lite/wifiservice",
+		"//device/soc/hisilicon/hi3861v100/hi3861_adapter/kal",
+	]
+}
+
+
+

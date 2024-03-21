@@ -1,0 +1,12 @@
+
+static_library("sensing_demo") {
+	sources = [
+		"environment_demo.c", "oled_ssd1306.c", "aht20.c",
+	]
+
+	include_dirs = [
+		"//utils/native/lite/include",
+		"//kernel/liteos_m/kal/cmsis",
+		"//base/iot_hardware/peripheral/interfaces/kits",
+	]
+}
