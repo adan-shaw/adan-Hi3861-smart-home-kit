@@ -31,11 +31,8 @@ void mqtt_callback (MessageData * msg_data)
 	LOS_ASSERT (msg_data);
 
 	printf ("topic %.*s receive a message\r\n", msg_data->topicName->lenstring.len, msg_data->topicName->lenstring.data);
-
 	printf ("message is %.*s\r\n", msg_data->message->payloadlen, msg_data->message->payload);
-
 	memset (recv_mqtt_buf, 0, sizeof (recv_mqtt_buf));
-
 	memcpy (recv_mqtt_buf, msg_data->message->payload, msg_data->message->payloadlen);
 
 	cotrl_handle (recv_mqtt_buf, msg_data->message->payloadlen);
@@ -44,6 +41,7 @@ void mqtt_callback (MessageData * msg_data)
 
 int mqtt_connect (void)
 {
+	MQTTMessage message;
 	int rc = 0;
 
 	NetworkInit (&n);
@@ -79,8 +77,6 @@ int mqtt_connect (void)
 
 	while (1)
 	{
-		MQTTMessage message;
-
 		message.qos = QOS1;
 		message.retained = 0;
 		message.payload = (void *) "openharmony";

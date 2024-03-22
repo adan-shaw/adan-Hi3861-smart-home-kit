@@ -10,7 +10,6 @@
 #include <unistd.h>
 #include <hi_types_base.h>
 #include <hi_early_debug.h>
-
 #include <hi_pwm.h>
 #include <hi_gpio.h>
 #include <hi_io.h>
@@ -25,9 +24,7 @@ void car_info_init (void)
 {
 	car_info.go_status = CAR_STATUS_STOP;
 	car_info.cur_status = CAR_STATUS_STOP;
-
 	car_info.mode = CAR_MODE_STEP;
-
 	car_info.step_count = CAR_STEP_COUNT;
 }
 
@@ -87,9 +84,7 @@ void pwm_stop (void)
 void car_stop (void)
 {
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_stop \r\n");
-
 	pwm_stop ();
 }
 
@@ -111,21 +106,16 @@ void car_forward (void)
 {
 	if (car_info.go_status != CAR_STATUS_FORWARD)
 	{
-		//直接退出
-		return;
+		return;//直接退出
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//状态没有变化, 直接推出
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_forward \r\n");
-
 	pwm_forward ();
-
 	step_count_update ();
 }
 
@@ -147,21 +137,16 @@ void car_backward (void)
 {
 	if (car_info.go_status != CAR_STATUS_BACKWARD)
 	{
-		//直接退出
-		return;
+		return;//直接退出
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//状态没有变化, 直接推出
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_backward \r\n");
-
 	pwm_backward ();
-
 	step_count_update ();
 }
 
@@ -176,28 +161,22 @@ void pwm_left (void)
 
 	//启动A路PWM
 	IoTPwmStart (PWM_PORT_PWM0, 750, 1500);
-
 }
 
 void car_left (void)
 {
 	if (car_info.go_status != CAR_STATUS_LEFT)
 	{
-		//直接退出
-		return;
+		return;//直接退出
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//状态没有变化, 直接推出
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_left \r\n");
-
 	pwm_left ();
-
 	step_count_update ();
 }
 
@@ -218,21 +197,16 @@ void car_right (void)
 {
 	if (car_info.go_status != CAR_STATUS_RIGHT)
 	{
-		//直接退出
-		return;
+		return;//直接退出
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//状态没有变化, 直接推出
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_right \r\n");
-
 	pwm_right ();
-
 	step_count_update ();
 }
 
@@ -275,7 +249,6 @@ void car_test (void)
 				break;
 
 			default:
-
 				break;
 			}
 		}
@@ -298,5 +271,4 @@ void car_test (void)
 
 		usleep (1000);
 	}
-
 }

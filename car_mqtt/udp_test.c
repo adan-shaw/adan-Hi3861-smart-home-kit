@@ -17,9 +17,7 @@ char recvline[1024];
 
 void cotrl_handle (char recvline, int ret)
 {
-	cJSON *recvjson;
-	//进行json解析
-	recvjson = cJSON_Parse (recvline);
+	cJSON *recvjson = cJSON_Parse (recvline);
 
 	if (recvjson != NULL)
 	{
@@ -80,15 +78,15 @@ void cotrl_handle (char recvline, int ret)
 
 void udp_thread (void *pdata)
 {
-	int ret;
-	struct sockaddr_in servaddr;
+	int ret, sizeClientAddr = sizeof (struct sockaddr_in);
+	struct sockaddr_in servaddr, addrClient;
 
 	pdata = pdata;
 
 	int sockfd = socket (PF_INET, SOCK_DGRAM, 0);
 
-	//服务器 ip port
-	bzero (&servaddr, sizeof (servaddr));
+	//填写服务器ip+port
+	//bzero (&servaddr, sizeof (servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = htonl (INADDR_ANY);
 	servaddr.sin_port = htons (50001);
@@ -98,9 +96,6 @@ void udp_thread (void *pdata)
 
 	while (1)
 	{
-		struct sockaddr_in addrClient;
-		int sizeClientAddr = sizeof (struct sockaddr_in);
-
 		memset (recvline, sizeof (recvline), 0);
 		ret = recvfrom (sockfd, recvline, 1024, 0, (struct sockaddr *) &addrClient, (socklen_t *) & sizeClientAddr);
 

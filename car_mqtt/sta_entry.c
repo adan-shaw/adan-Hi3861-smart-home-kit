@@ -57,9 +57,7 @@ void wifi_wpa_event_cb (const hi_wifi_event * hisi_event)
 	case HI_WIFI_EVT_CONNECTED:
 		printf ("WiFi: Connected\n");
 		netifapi_dhcp_start (g_lwip_netif);
-
 		start_wifi_connected_flg = 1;
-
 		break;
 	case HI_WIFI_EVT_DISCONNECTED:
 		printf ("WiFi: Disconnected\n");

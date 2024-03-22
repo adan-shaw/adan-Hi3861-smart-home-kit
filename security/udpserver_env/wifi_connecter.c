@@ -54,6 +54,8 @@ int ConnectToHotspot (WifiDeviceConfig * apConfig)
 {
 	WifiErrorCode errCode;
 	int netId = -1;
+	err_t ret = 0;
+	char *hostname = "hispark";
 
 	errCode = RegisterWifiEvent (&g_defaultWifiEventListener);
 	printf ("RegisterWifiEvent: %d\r\n", errCode);
@@ -77,8 +79,6 @@ int ConnectToHotspot (WifiDeviceConfig * apConfig)
 	g_iface = netifapi_netif_find ("wlan0");
 	if (g_iface)
 	{
-		err_t ret = 0;
-		char *hostname = "hispark";
 		ret = netifapi_set_hostname (g_iface, hostname, strlen (hostname));
 		printf ("netifapi_set_hostname: %d\r\n", ret);
 
@@ -109,9 +109,11 @@ int ConnectToHotspot (WifiDeviceConfig * apConfig)
 
 void DisconnectWithHotspot (int netId)
 {
+	err_t ret;
+
 	if (g_iface)
 	{
-		err_t ret = netifapi_dhcp_stop (g_iface);
+		ret = netifapi_dhcp_stop (g_iface);
 		printf ("netifapi_dhcp_stop: %d\r\n", ret);
 	}
 

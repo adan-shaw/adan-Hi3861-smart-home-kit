@@ -27,15 +27,14 @@ void mqtt_callback (MessageData * msg_data)
 	char topicname[45] = { "$crsp/" };
 
 	LOS_ASSERT (msg_data);
-
 	printf ("topic %.*s receive a message\r\n", msg_data->topicName->lenstring.len, msg_data->topicName->lenstring.data);
-
 	printf ("message is %.*s\r\n", msg_data->message->payloadlen, msg_data->message->payload);
 
 }
 
 int mqtt_connect (void)
 {
+	MQTTMessage message;
 	int rc = 0;
 
 	NetworkInit (&n);
@@ -71,8 +70,6 @@ int mqtt_connect (void)
 
 	while (1)
 	{
-		MQTTMessage message;
-
 		message.qos = QOS1;
 		message.retained = 0;
 		message.payload = (void *) "openharmony";

@@ -70,11 +70,10 @@ void wifi_wpa_event_cb (const hi_wifi_event * hisi_event)
 int hi_wifi_start_connect (void)
 {
 	int ret;
-	errno_t rc;
 	hi_wifi_assoc_request assoc_req = { 0 };
 
 	/* copy SSID to assoc_req */
-	rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, "RedmiK40", 8);/* 9:ssid length */
+	errno_t rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, "RedmiK40", 8);/* 9:ssid length */
 	if (rc != EOK)
 	{
 		return -1;
@@ -177,8 +176,6 @@ int hi_wifi_start_sta (void)
 
 void wifi_sta_task (void *arg)
 {
-	arg = arg;
-
 	//连接热点
 	hi_wifi_start_sta ();
 

@@ -14,12 +14,12 @@ static char message[256] = "";
 
 void UdpServerTest (unsigned short port)
 {
+	char *megsend;
 	ssize_t retval = 0;
-	int sockfd = socket (AF_INET, SOCK_DGRAM, 0);	// UDP socket
-
-	struct sockaddr_in clientAddr = { 0 };
+	struct sockaddr_in clientAddr = { 0 }, serverAddr = { 0 };
 	socklen_t clientAddrLen = sizeof (clientAddr);
-	struct sockaddr_in serverAddr = { 0 };
+	int ret, sockfd = socket (AF_INET, SOCK_DGRAM, 0);// UDP socket
+
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_port = htons (port);
 	serverAddr.sin_addr.s_addr = htonl (INADDR_ANY);
@@ -41,7 +41,7 @@ void UdpServerTest (unsigned short port)
 
 		if (g_wifiStatus == WIFI_AP)
 		{
-			int ret = cJSONParseAP (message);
+			ret = cJSONParseAP (message);
 			if (ret < 0)
 			{
 				printf ("parse message failed\r\n");
@@ -55,7 +55,7 @@ void UdpServerTest (unsigned short port)
 				printf ("recvfrom failed, %ld!\r\n", retval);
 				goto do_cleanup;
 			}
-			int ret = cJSONParseSTA (message);
+			ret = cJSONParseSTA (message);
 			if (ret < 0)
 			{
 				printf ("parse message failed\r\n");
@@ -65,7 +65,7 @@ void UdpServerTest (unsigned short port)
 		if (sendMessage)
 		{
 			osDelay (100);
-			char *megsend = cJSONReport ();
+			megsend = cJSONReport ();
 			retval = sendto (sockfd, megsend, strlen (megsend), 0, (struct sockaddr *) &clientAddr, sizeof (clientAddr));
 			if (retval <= 0)
 			{

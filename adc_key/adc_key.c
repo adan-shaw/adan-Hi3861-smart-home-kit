@@ -39,14 +39,14 @@ hi_void convert_to_voltage (hi_u32 data_len)
 	hi_u32 i;
 	float vlt_max = 0;
 	float vlt_min = VLT_MIN;
-
 	float vlt_val = 0;
-
+	float voltage;
 	hi_u16 vlt;
+
 	for (i = 0; i < data_len; i++)
 	{
 		vlt = g_adc_buf[i];
-		float voltage = (float) vlt * 1.8 * 4 / 4096.0;/* vlt * 1.8 * 4 / 4096.0: Convert code into voltage */
+		voltage = (float) vlt * 1.8 * 4 / 4096.0;//Convert code into voltage
 		vlt_max = (voltage > vlt_max) ? voltage : vlt_max;
 		vlt_min = (voltage < vlt_min) ? voltage : vlt_min;
 	}
@@ -90,7 +90,7 @@ hi_void convert_to_voltage (hi_u32 data_len)
 void app_demo_adc_test (void)
 {
 	hi_u32 ret, i;
-	hi_u16 data;									/* 10 */
+	hi_u16 data;//10
 
 	memset_s (g_adc_buf, sizeof (g_adc_buf), 0x0, sizeof (g_adc_buf));
 
@@ -135,29 +135,22 @@ void my_gpio_isr_demo (void *arg)
 		switch (get_key_event ())
 		{
 		case KEY_EVENT_NONE:
-			{
-
-			}
 			break;
-
 		case KEY_EVENT_S1:
 			{
 				printf ("KEY_EVENT_S1 \r\n");
 			}
 			break;
-
 		case KEY_EVENT_S2:
 			{
 				printf ("KEY_EVENT_S2 \r\n");
 			}
 			break;
-
 		case KEY_EVENT_S3:
 			{
 				printf ("KEY_EVENT_S3 \r\n");
 			}
 			break;
-
 		}
 
 		usleep (30000);

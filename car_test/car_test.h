@@ -38,20 +38,15 @@ typedef enum
 
 struct car_sys_info
 {
-
 	CarStatus cur_status;
 	CarStatus go_status;
 	char status_change;
-
 	CarMode mode;
-
 	int step_count;
 };
 
 void car_test (void);
-
 void set_car_status (CarStatus status);
-
 void set_car_mode (CarMode mode);
 
 #define IO_NAME_GPIO_0		0

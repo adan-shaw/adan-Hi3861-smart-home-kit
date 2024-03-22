@@ -3,7 +3,7 @@
 #define NET_PARAMS_H
 
 #ifndef PARAM_SERVER_ADDR
-#define PARAM_SERVER_ADDR "192.168.1.114"	// your PC IP address
+#define PARAM_SERVER_ADDR "192.168.1.114" // your PC IP address
 #endif
 
 #ifndef PARAM_SERVER_PORT

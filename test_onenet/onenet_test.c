@@ -14,23 +14,18 @@ extern int rand (void);
 void onenet_cmd_rsp_cb (uint8_t * recv_data, size_t recv_size, uint8_t ** resp_data, size_t *resp_size)
 {
 	printf ("recv data is %.*s\n", recv_size, recv_data);
-
 	*resp_data = NULL;
 	*resp_size = 0;
 }
 
 int onenet_test (void)
 {
-
+	int value = 0;
 	device_info_init (ONENET_INFO_DEVID, ONENET_INFO_PROID, ONENET_INFO_AUTH, ONENET_INFO_APIKEY, ONENET_MASTER_APIKEY);
 	onenet_mqtt_init ();
-
 	onenet_set_cmd_rsp_cb (onenet_cmd_rsp_cb);
-
 	while (1)
 	{
-		int value = 0;
-
 		value = rand () % 100;
 
 		if (onenet_mqtt_upload_digit ("temperature", value) < 0)

@@ -23,7 +23,7 @@
 #define GPIO9 9
 #define GPIO10 10
 #define GPIOFUNC 0
-#define PWM_FREQ_FREQUENCY  (60000)
+#define PWM_FREQ_FREQUENCY (60000)
 
 void gpio_control (unsigned int gpio, IotGpioValue value)
 {
@@ -41,9 +41,7 @@ void car_info_init (void)
 {
 	car_info.go_status = CAR_STATUS_STOP;
 	car_info.cur_status = CAR_STATUS_STOP;
-
 	car_info.mode = CAR_MODE_STEP;
-
 	car_info.step_count = CAR_STEP_COUNT;
 }
 
@@ -63,7 +61,7 @@ void set_car_status (CarStatus status)
 	step_count_update ();
 }
 
-//璁剧疆琛岄┒妯″紡
+//设置行驶模式
 void set_car_mode (CarMode mode)
 {
 	car_info.mode = mode;
@@ -76,13 +74,13 @@ void pwm_init (void)
 	IoTGpioInit (IO_NAME_GPIO_9);
 	IoTGpioInit (IO_NAME_GPIO_10);
 
-	//寮曡剼澶嶇敤
+	//引脚复用
 	//hi_io_set_func(IO_NAME_GPIO_0, IO_FUNC_GPIO_0_PWM3_OUT); 
 	//hi_io_set_func(IO_NAME_GPIO_1, IO_FUNC_GPIO_1_PWM4_OUT);  
 	//hi_io_set_func(IO_NAME_GPIO_9, IO_FUNC_GPIO_9_PWM0_OUT); 
 	//hi_io_set_func(IO_NAME_GPIO_10, IO_FUNC_GPIO_10_PWM1_OUT); 
 
-	//鍒濆鍖杙wm
+	//初始化pwm
 	//IoTPwmInit(PWM_PORT_PWM3);
 	//IoTPwmInit(PWM_PORT_PWM4);
 	//IoTPwmInit(PWM_PORT_PWM0);
@@ -90,10 +88,10 @@ void pwm_init (void)
 
 }
 
-//鍋滄
+//停止
 void pwm_stop (void)
 {
-	//鍏堝仠姝WM
+	//先停止PWM
 	gpio_control (GPIO0, IOT_GPIO_VALUE1);
 	gpio_control (GPIO1, IOT_GPIO_VALUE1);
 	gpio_control (GPIO9, IOT_GPIO_VALUE1);
@@ -103,25 +101,23 @@ void pwm_stop (void)
 void car_stop (void)
 {
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_stop \r\n");
-
 	pwm_stop ();
 }
 
-//鍓嶈繘
+//前进
 void pwm_forward (void)
 {
-	//鍏堝仠姝WM
+	//先停止PWM
 	gpio_control (GPIO0, IOT_GPIO_VALUE1);
 	gpio_control (GPIO1, IOT_GPIO_VALUE0);
 	gpio_control (GPIO9, IOT_GPIO_VALUE1);
 	gpio_control (GPIO10, IOT_GPIO_VALUE0);
 
-	//鍚姩A璺疨WM
-	//左轮
+	//启动A路PWM
+	//
 	//IoTPwmStart(PWM_PORT_PWM3, 64000, 64000);
-	//右轮
+	//
 	//IoTPwmStart(PWM_PORT_PWM0, 64000, 64000);
 }
 
@@ -129,34 +125,29 @@ void car_forward (void)
 {
 	if (car_info.go_status != CAR_STATUS_FORWARD)
 	{
-		//鐩存帴閫€鍑?
-		return;
+		return;//直接退?
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//鐘舵€佹病鏈夊彉鍖栵紝鐩存帴鎺ㄥ嚭
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_forward \r\n");
-
 	pwm_forward ();
-
 	step_count_update ();
 }
 
-//鍚庨€€
+//后退
 void pwm_backward (void)
 {
-	//鍏堝仠姝WM
+	//先停止PWM
 	gpio_control (GPIO0, IOT_GPIO_VALUE0);
 	gpio_control (GPIO1, IOT_GPIO_VALUE1);
 	gpio_control (GPIO9, IOT_GPIO_VALUE0);
 	gpio_control (GPIO10, IOT_GPIO_VALUE1);
 
-	//鍚姩A璺疨WM
+	//启动A路PWM
 	//IoTPwmStart(PWM_PORT_PWM4, 64000, 64000);
 	//IoTPwmStart(PWM_PORT_PWM1, 64000, 64000);
 }
@@ -165,70 +156,59 @@ void car_backward (void)
 {
 	if (car_info.go_status != CAR_STATUS_BACKWARD)
 	{
-		//鐩存帴閫€鍑?
-		return;
+		return;//直接退?
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//鐘舵€佹病鏈夊彉鍖栵紝鐩存帴鎺ㄥ嚭
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_backward \r\n");
-
 	pwm_backward ();
-
 	step_count_update ();
 }
 
-//宸﹁浆
+//左转
 void pwm_left (void)
 {
-	//鍏堝仠姝WM
+	//先停止PWM
 	gpio_control (GPIO0, IOT_GPIO_VALUE0);
 	gpio_control (GPIO1, IOT_GPIO_VALUE0);
 	gpio_control (GPIO9, IOT_GPIO_VALUE1);
 	gpio_control (GPIO10, IOT_GPIO_VALUE0);
 
-	//鍚姩A璺疨WM
+	//启动A路PWM
 	//IoTPwmStart(PWM_PORT_PWM0, 64000, 64000);
-
 }
 
 void car_left (void)
 {
 	if (car_info.go_status != CAR_STATUS_LEFT)
 	{
-		//鐩存帴閫€鍑?
-		return;
+		return;//直接退?
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//鐘舵€佹病鏈夊彉鍖栵紝鐩存帴鎺ㄥ嚭
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_left \r\n");
-
 	pwm_left ();
-
 	step_count_update ();
 }
 
-//鍙宠浆
+//右转
 void pwm_right (void)
 {
-	//鍏堝仠姝WM
+	//先停止PWM
 	gpio_control (GPIO0, IOT_GPIO_VALUE1);
 	gpio_control (GPIO1, IOT_GPIO_VALUE0);
 	gpio_control (GPIO9, IOT_GPIO_VALUE0);
 	gpio_control (GPIO10, IOT_GPIO_VALUE0);
 
-	//鍚姩A璺疨WM
+	//启动A路PWM
 	//IoTPwmStart(PWM_PORT_PWM3, 64000, 64000);
 }
 
@@ -236,21 +216,16 @@ void car_right (void)
 {
 	if (car_info.go_status != CAR_STATUS_RIGHT)
 	{
-		//鐩存帴閫€鍑?
-		return;
+		return;//直接退?
 	}
 	if (car_info.cur_status == car_info.go_status)
 	{
-		//鐘舵€佹病鏈夊彉鍖栵紝鐩存帴鎺ㄥ嚭
-		return;
+		return;//状态没有变化, 直接推出
 	}
 
 	car_info.cur_status = car_info.go_status;
-
 	printf ("pwm_right \r\n");
-
 	pwm_right ();
-
 	step_count_update ();
 }
 
@@ -307,7 +282,6 @@ void car_test (void)
 				break;
 
 			default:
-
 				break;
 			}
 		}
@@ -330,5 +304,4 @@ void car_test (void)
 
 		usleep (1000);
 	}
-
 }
