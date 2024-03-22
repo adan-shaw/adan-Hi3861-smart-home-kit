@@ -3,3 +3,26 @@
 组建交叉编译链, 尝试编译看看, 代码是否出错;
 
 编译通过之后, 需要有'润和Hi3861'主板, 才能进行实际机试, 机试没问题, 代码才有真正意义上的参考价值;
+
+
+
+本project 的编译工具链部署, 请看:
+	./gcc_riscv32编译链解读
+
+下载资源, 请看: https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz
+
+
+
+实际上https://repo.huaweicloud.com/harmonyos/ 是华为系统的一些资源, 包括:
+	compiler          编译器
+	develop_tools     开发工具(烧写, 镜像维护等)
+	doc               文档
+	hpm-cli           
+	hpm-image         
+	mtd-utils-win-x86 
+	os                华为os 源码
+	rk3399            rk3399 的os镜像
+	sdk               编程SDK
+	usb-driver        PC to motherboard usb 驱动
+
+缺什么, 就在这上面找就行, 但华为的软件, 大部分是windows 平台下的东西, 文档编码大部分是: dos 换行的, 甚至不是utf-8, 十分麻烦!!

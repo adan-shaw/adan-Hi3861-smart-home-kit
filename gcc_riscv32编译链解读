@@ -1,0 +1,105 @@
+PC:
+	# 添加编译gcc/g++/gdb 工具到$PATH
+	export PATH=/home/adan/tarball.src/gcc_riscv32/bin:$PATH
+
+	# 不指定lib, 防止混乱, 自己在makefile 中指明lib
+	LIB=/home/adan/tarball.src/gcc_riscv32/lib
+	LIBEx=/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/lib
+
+	# 头文件 (编程时, 包含头文件, 以这个include 为准)
+	HFILE=/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/include
+	HFILE_Ex=/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/sys-include
+
+	# make/cmake 工具(不需要交叉编译, 直接用PC make/cmake 就行)
+
+
+
+
+
+target:
+	# 拷贝编译好的文件, 到img 镜像中;(如果目标系统有ftp, 可以直接发送文件过去)
+	/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/
+
+	# target-bin
+	/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/bin
+
+	# target-lib
+	/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/lib
+
+	# target-include (编程时, 包含头文件, 以这个include 为准)
+	/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/include
+	/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/sys-include
+
+	# target-sys-include
+	/home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/sys-include
+
+
+
+
+
+总结:
+	一切差异, 以运行系统里面的资料为准!!
+	交叉编译时, PC 只有gcc/g++ 是可用的, 
+	就连lib 动态链接库, PC 实际上也是没有的, 也不能用gdb, 只能到了对端target motherboard 上面调试;
+	当然, 编译时用到的LIB=/home/adan/tarball.src/gcc_riscv32/lib, 是基于target motherboard 编译生成的, 建议在makefile 中指定这个.so 动态链接库;
+
+	ps:
+		riscv32-unknown-elf 编译工具链, 是现成的, 编译好的, 一键安装版本;
+		虽然编译工具链比较混乱, 但也是勉强可用, 忍忍;
+
+		支持平台:
+			./ar: supported targets: 
+				elf32-littleriscv 
+				elf64-littleriscv 
+				elf64-little 
+				elf64-big 
+				elf32-little 
+				elf32-big 
+				plugin srec symbolsrec verilog tekhex binary ihex
+
+
+
+
+
+其它调试工具:
+	# readelf
+	PC:          /home/adan/tarball.src/gcc_riscv32/bin/riscv32-unknown-elf-readelf
+	motherboard: /home/adan/tarball.src/gcc_riscv32/riscv32-unknown-elf/bin/readelf
+
+	# 如此类推
+	# nm
+	# ar
+	# ld
+	# gcov
+	# gdb
+	# gprof
+	# as
+	# g++
+	# gcc
+
+
+
+本project 的编译工具链部署, 请看:
+	./gcc_riscv32编译链解读
+
+下载资源, 请看: https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz
+
+
+
+实际上https://repo.huaweicloud.com/harmonyos/ 是华为系统的一些资源, 包括:
+	compiler          编译器
+	develop_tools     开发工具(烧写, 镜像维护等)
+	doc               文档
+	hpm-cli           
+	hpm-image         
+	mtd-utils-win-x86 
+	os                华为os 源码
+	rk3399            rk3399 的os镜像
+	sdk               编程SDK
+	usb-driver        PC to motherboard usb 驱动
+
+缺什么, 就在这上面找就行, 但华为的软件, 大部分是windows 平台下的东西, 文档编码大部分是: dos 换行的, 甚至不是utf-8, 十分麻烦!!
+这个url 上面的gcc 交叉编译工具链, 使用套路大部分都是一样的, 都是PC + target 的双端exe 二进制封装, 移植到位就行, 很简单;
+
+
+
