@@ -80,9 +80,9 @@ int StartHotspot (const HotspotConfig * config)
 		ip4_addr_t gateway;
 		ip4_addr_t netmask;
 
-		IP4_ADDR (&ipaddr, 192, 168, 1, 1);	/* input your IP for example: 192.168.1.1 */
-		IP4_ADDR (&gateway, 192, 168, 1, 1);	/* input your gateway for example: 192.168.1.1 */
-		IP4_ADDR (&netmask, 255, 255, 255, 0);	/* input your netmask for example: 255.255.255.0 */
+		IP4_ADDR (&ipaddr, 192, 168, 1, 1);/* input your IP for example: 192.168.1.1 */
+		IP4_ADDR (&gateway, 192, 168, 1, 1);/* input your gateway for example: 192.168.1.1 */
+		IP4_ADDR (&netmask, 255, 255, 255, 0);/* input your netmask for example: 255.255.255.0 */
 		err_t ret = netifapi_netif_set_addr (g_iface, &ipaddr, &netmask, &gateway);
 		printf ("netifapi_netif_set_addr: %d\r\n", ret);
 

@@ -51,14 +51,10 @@ void udp_thread (void *pdata)
 			recvjson = cJSON_Parse (recvline);
 
 			/*
-
 			   {
-
 			   "cmd":"XXXXXXX",
-
 			   "mode":"YYYYYYY"
 			   }
-
 			   YYYY是否一直前进, 步进
 			 */
 			if (recvjson != NULL)

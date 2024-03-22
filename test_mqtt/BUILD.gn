@@ -15,7 +15,7 @@ static_library("mqtt_test") {
 		"//third_party/pahomqtt/MQTTClient-C/src",
 		"//third_party/pahomqtt/MQTTClient-C/src/liteOS",
 	]
-#表示需要a_myparty 软件包
+# 表示需要a_myparty 软件包
 	deps = [
 		"//third_party/pahomqtt:pahomqtt_static",
 	]

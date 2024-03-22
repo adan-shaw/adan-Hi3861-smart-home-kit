@@ -1,10 +1,12 @@
+
+#include <stdio.h>
+#include <unistd.h>
+
 #include "hi_wifi_api.h"
 #include "lwip/ip_addr.h"
 #include "lwip/netifapi.h"
 #include "lwip/sockets.h"
-#include <stdio.h>
 
-#include <unistd.h>
 #include "ohos_init.h"
 #include "cmsis_os2.h"
 #include "cJSON.h"

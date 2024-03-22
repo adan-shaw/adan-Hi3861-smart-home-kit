@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #include <unistd.h>
 
 #include "ohos_init.h"
@@ -15,8 +14,8 @@
 
 #include "car_test.h"
 
-#define WIFI_SSID		"12-203"
-#define WIFI_PASSWD		"07686582488"
+#define WIFI_SSID "12-203"
+#define WIFI_PASSWD "07686582488"
 
 #define APP_INIT_VAP_NUM	2
 #define APP_INIT_USR_NUM	2
@@ -83,7 +82,7 @@ int hi_wifi_start_connect (void)
 
 	/* copy SSID to assoc_req */
 	//热点名称
-	rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, WIFI_SSID, strlen (WIFI_SSID));	/* 9:ssid length */
+	rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, WIFI_SSID, strlen (WIFI_SSID));/* 9:ssid length */
 	if (rc != EOK)
 	{
 		printf ("%s %d \r\n", __FILE__, __LINE__);

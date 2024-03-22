@@ -33,7 +33,7 @@ int get_key_event (void)
 	return tmp;
 }
 
-/* asic adc test  */
+/* asic adc test */
 hi_void convert_to_voltage (hi_u32 data_len)
 {
 	hi_u32 i;
@@ -46,7 +46,7 @@ hi_void convert_to_voltage (hi_u32 data_len)
 	for (i = 0; i < data_len; i++)
 	{
 		vlt = g_adc_buf[i];
-		float voltage = (float) vlt * 1.8 * 4 / 4096.0;	/* vlt * 1.8 * 4 / 4096.0: Convert code into voltage */
+		float voltage = (float) vlt * 1.8 * 4 / 4096.0;/* vlt * 1.8 * 4 / 4096.0: Convert code into voltage */
 		vlt_max = (voltage > vlt_max) ? voltage : vlt_max;
 		vlt_min = (voltage < vlt_min) ? voltage : vlt_min;
 	}
@@ -118,7 +118,7 @@ void my_gpio_isr_demo (void *arg)
 
 	(hi_void) hi_gpio_init ();
 
-	hi_io_set_func (HI_IO_NAME_GPIO_5, HI_IO_FUNC_GPIO_5_GPIO);	/* uart1 rx */
+	hi_io_set_func (HI_IO_NAME_GPIO_5, HI_IO_FUNC_GPIO_5_GPIO);/* uart1 rx */
 
 	ret = hi_gpio_set_dir (HI_GPIO_IDX_5, HI_GPIO_DIR_IN);
 	if (ret != HI_ERR_SUCCESS)

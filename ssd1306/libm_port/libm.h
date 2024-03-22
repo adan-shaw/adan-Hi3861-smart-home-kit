@@ -73,9 +73,9 @@ union ldshape
 #error Unsupported long double representation
 #endif
 
-/* Support non-nearest rounding mode.  */
+/* Support non-nearest rounding mode. */
 #define WANT_ROUNDING 1
-/* Support signaling NaNs.  */
+/* Support signaling NaNs. */
 #define WANT_SNAN 0
 
 #if WANT_SNAN
@@ -92,16 +92,16 @@ union ldshape
 #if TOINT_INTRINSICS
 /* Round x to nearest int in all rounding modes, ties have to be rounded
    consistently with converttoint so the results match.  If the result
-   would be outside of [-2^31, 2^31-1] then the semantics is unspecified.  */
+   would be outside of [-2^31, 2^31-1] then the semantics is unspecified. */
 static double_t roundtoint (double_t);
 
 /* Convert x to nearest int in all rounding modes, ties have to be rounded
    consistently with roundtoint.  If the result is not representible in an
-   int32_t then the semantics is unspecified.  */
+   int32_t then the semantics is unspecified. */
 static int32_t converttoint (double_t);
 #endif
 
-/* Helps static branch prediction so hot path can be better optimized.  */
+/* Helps static branch prediction so hot path can be better optimized. */
 #ifdef __GNUC__
 #define predict_true(x) __builtin_expect(!!(x), 1)
 #define predict_false(x) __builtin_expect(x, 0)
@@ -113,7 +113,7 @@ static int32_t converttoint (double_t);
 /* Evaluate an expression as the specified type. With standard excess
    precision handling a type cast or assignment is enough (with
    -ffloat-store an assignment is required, in old compilers argument
-   passing and return statement may not drop excess precision).  */
+   passing and return statement may not drop excess precision). */
 
 static inline float eval_as_float (float x)
 {
@@ -129,7 +129,7 @@ static inline double eval_as_double (double x)
 
 /* fp_barrier returns its input, but limits code transformations
    as if it had a side-effect (e.g. observable io) and returned
-   an arbitrary value.  */
+   an arbitrary value. */
 
 #ifndef fp_barrierf
 #define fp_barrierf fp_barrierf
@@ -162,7 +162,7 @@ static inline long double fp_barrierl (long double x)
    otherwise unused.  To prevent the constant folding of the input
    expression, an additional fp_barrier may be needed or a compilation
    mode that does so (e.g. -frounding-math in gcc). Then it can be
-   used to evaluate an expression for its fenv side-effects only.   */
+   used to evaluate an expression for its fenv side-effects only.  */
 
 #ifndef fp_force_evalf
 #define fp_force_evalf fp_force_evalf

@@ -72,7 +72,7 @@ int hi_wifi_start_connect (void)
 	hi_wifi_assoc_request assoc_req = { 0 };
 
 	/* copy SSID to assoc_req */
-	rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, "RedmiK40", 8);	/* 9:ssid length */
+	rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, "RedmiK40", 8);/* 9:ssid length */
 	if (rc != EOK)
 	{
 		return -1;

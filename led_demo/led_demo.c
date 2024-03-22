@@ -4,7 +4,7 @@
 #include "cmsis_os2.h"
 #include "iot_gpio.h"
 
-#define LED_TEST_GPIO 9					// for hispark_pegasus
+#define LED_TEST_GPIO 9 // for hispark_pegasus
 
 void *LedTask (const char *arg)
 {

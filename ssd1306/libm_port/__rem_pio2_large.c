@@ -124,7 +124,7 @@
 
 #include "libm.h"
 
-static const int init_jk[] = { 3, 4, 4, 6 };	/* initial value for jk */
+static const int init_jk[] = { 3, 4, 4, 6 };/* initial value for jk */
 
 /*
  * Table of constants for 2/pi, 396 Hex digits (476 decimal) of 2/pi
@@ -312,7 +312,7 @@ recompute:
 
 	/* compute n */
 	z = scalbn (z, q0);						/* actual value of z */
-	z -= 8.0 * floor (z * 0.125);	/* trim off integer >= 8 */
+	z -= 8.0 * floor (z * 0.125);/* trim off integer >= 8 */
 	n = (int32_t) z;
 	z -= (double) n;
 	ih = 0;
@@ -374,7 +374,7 @@ recompute:
 			j |= iq[i];
 		if (j == 0)
 		{														/* need recomputation */
-			for (k = 1; iq[jk - k] == 0; k++) ;	/* k = no. of terms needed */
+			for (k = 1; iq[jk - k] == 0; k++) ;/* k = no. of terms needed */
 
 			for (i = jz + 1; i <= jz + k; i++)
 			{													/* add q[jz+1] to q[jz+k] */

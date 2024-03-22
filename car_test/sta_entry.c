@@ -15,8 +15,8 @@
 
 #include "car_test.h"
 
-#define WIFI_SSID		"hihope"
-#define WIFI_PASSWD		"12345678"
+#define WIFI_SSID "hihope"
+#define WIFI_PASSWD "12345678"
 
 #define APP_INIT_VAP_NUM	2
 #define APP_INIT_USR_NUM	2
@@ -88,8 +88,7 @@ int hi_wifi_start_connect (void)
 	hi_wifi_assoc_request assoc_req = { 0 };
 
 	/* copy SSID to assoc_req */
-	//鐑偣鍚嶇О
-	rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, WIFI_SSID, strlen (WIFI_SSID));	/* 9:ssid length */
+	rc = memcpy_s (assoc_req.ssid, HI_WIFI_MAX_SSID_LEN + 1, WIFI_SSID, strlen (WIFI_SSID));/* 9:ssid length */
 	if (rc != EOK)
 	{
 		printf ("%s %d \r\n", __FILE__, __LINE__);
@@ -102,10 +101,8 @@ int hi_wifi_start_connect (void)
 	 * set assoc_req.auth as HI_WIFI_SECURITY_WPA2PSK,
 	 * then memcpy(assoc_req.key, "12345678", 8).
 	 */
-	//鐑偣鍔犲瘑鏂瑰紡
 	assoc_req.auth = HI_WIFI_SECURITY_WPA2PSK;
 
-	/* 鐑偣瀵嗙爜 */
 	memcpy (assoc_req.key, WIFI_PASSWD, strlen (WIFI_PASSWD));
 
 	ret = hi_wifi_sta_connect (&assoc_req);

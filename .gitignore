@@ -1,0 +1,9 @@
+.vscode
+*.so
+*.o
+*.a
+*.exe
+*.pdf
+*.zip
+*.tar.bz2
+x

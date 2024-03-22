@@ -40,7 +40,7 @@ static const double toint = 1.5 / EPS, invpio2 = 6.36619772367581382433e-01,	/* 
 	pio2_2 = 6.07710050630396597660e-11,	/* 0x3DD0B461, 0x1A600000 */
 	pio2_2t = 2.02226624879595063154e-21,	/* 0x3BA3198A, 0x2E037073 */
 	pio2_3 = 2.02226624871116645580e-21,	/* 0x3BA3198A, 0x2E000000 */
-	pio2_3t = 8.47842766036889956997e-32;	/* 0x397B839A, 0x252049C1 */
+	pio2_3t = 8.47842766036889956997e-32;/* 0x397B839A, 0x252049C1 */
 
 /* caller must handle the case when reduction is not needed: |x| ~<= pi/4 */
 int __rem_pio2 (double x, double *y)

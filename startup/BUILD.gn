@@ -1,7 +1,6 @@
 
 source_set("startup") {
 	sources = [
-
 	]
 
 	include_dirs = [ ]

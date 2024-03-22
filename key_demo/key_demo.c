@@ -10,7 +10,7 @@
 
 #include <hi_gpio.h>
 
-#define KEY_TEST_GPIO 0					// for hispark_pegasus
+#define KEY_TEST_GPIO 0 // for hispark_pegasus
 
 /* gpio callback func */
 hi_void gpio_isr_func (hi_void * arg)

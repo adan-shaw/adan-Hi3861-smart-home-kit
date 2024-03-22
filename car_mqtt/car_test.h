@@ -5,19 +5,19 @@
 
 typedef enum
 {
-	/*停止 */
+	/* 停止 */
 	CAR_STATUS_STOP,
 
-	/*前进 */
+	/* 前进 */
 	CAR_STATUS_FORWARD,
 
-	/*后退 */
+	/* 后退 */
 	CAR_STATUS_BACKWARD,
 
-	/*左转 */
+	/* 左转 */
 	CAR_STATUS_LEFT,
 
-	/*右转 */
+	/* 右转 */
 	CAR_STATUS_RIGHT,
 
 	/* Maximum value */
@@ -26,10 +26,10 @@ typedef enum
 
 typedef enum
 {
-	/*收到前进、后退指令后, 只会走一小段距离, 然后停止 */
+	/* 收到前进、后退指令后, 只会走一小段距离, 然后停止 */
 	CAR_MODE_STEP,
 
-	/*收到前进、后退指令后, 会一直走 */
+	/* 收到前进、后退指令后, 会一直走 */
 	CAR_MODE_ALWAY,
 
 	/* Maximum value */

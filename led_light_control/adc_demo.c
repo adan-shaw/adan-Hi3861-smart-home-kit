@@ -13,7 +13,7 @@
 #include "iot_gpio.h"
 
 //LDE灯
-#define LED_TEST_GPIO 9					// for hispark_pegasus
+#define LED_TEST_GPIO 9 // for hispark_pegasus
 
 //光感传感器IO
 #define LIGHT_SENSOR_CHAN_NAME HI_ADC_CHANNEL_4
