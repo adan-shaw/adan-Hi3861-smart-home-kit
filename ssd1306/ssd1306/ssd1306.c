@@ -1,7 +1,7 @@
 #include "ssd1306.h"
 #include <math.h>
 #include <stdlib.h>
-#include <string.h>							// For memcpy
+#include <string.h>// For memcpy
 
 #include <stdio.h>
 #include <unistd.h>

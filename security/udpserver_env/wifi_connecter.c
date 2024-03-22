@@ -7,9 +7,6 @@
 
 static void PrintLinkedInfo (WifiLinkedInfo * info)
 {
-	if (!info)
-		return;
-
 	static char macAddress[32] = { 0 };
 	unsigned char *mac = info->bssid;
 	snprintf (macAddress, sizeof (macAddress), "%02X:%02X:%02X:%02X:%02X:%02X", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
@@ -20,9 +17,6 @@ static volatile int g_connected = 0;
 
 static void OnWifiConnectionChanged (int state, WifiLinkedInfo * info)
 {
-	if (!info)
-		return;
-
 	printf ("%s %d, state = %d, info = \r\n", __FUNCTION__, __LINE__, state);
 	PrintLinkedInfo (info);
 
