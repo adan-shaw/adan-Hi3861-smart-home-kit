@@ -26,3 +26,5 @@
 	usb-driver        PC to motherboard usb 驱动
 
 缺什么, 就在这上面找就行, 但华为的软件, 大部分是windows 平台下的东西, 文档编码大部分是: dos 换行的, 甚至不是utf-8, 十分麻烦!!
+
+由于liteOS github 官网, 4 年没有更新了, 转移到gitee.com 中, 也有两年没有更新了, today is 2024/03/24, so this project cut, RT-Thread is a new direction;
